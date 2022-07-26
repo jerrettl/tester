@@ -1,8 +1,6 @@
 name: Suggestion
 description: Suggest additions to content, practice problems, or website appearance.
-title: ''
 labels: ["enhancement"]
-assignees: ''
 
 body:
   - type: markdown
