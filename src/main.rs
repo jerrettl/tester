@@ -1,5 +1,5 @@
 fn main() {
     println!("Hello, world!");
 
-    println!(This line should be bad);
+    println!("This line should be bad");
 }
