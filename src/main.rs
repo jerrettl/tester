@@ -1,9 +1,6 @@
 fn main() {
     println!("Hello, world!");
 
-    println!("This line is no longer bad");
+    println!(This is missing quotes);
 
-    for i in 1..10 {
-        println!("i = {i}");
-    }
 }
