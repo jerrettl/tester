@@ -1,6 +1,5 @@
 fn main() {
     println!("Hello, world!");
 
-    println!(This is missing quotes);
-
+    println!("This is missing quotes");
 }
