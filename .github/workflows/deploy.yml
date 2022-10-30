@@ -25,10 +25,8 @@ jobs:
       with:
           toolchain: stable
           override: true
-          # target: wasm32-unknown-unknown
 
-    - name: Import cache
-      uses: Swatinem/rust-cache@v2
+    - uses: Swatinem/rust-cache@v2
 
     - name: Install trunk
       uses: jetli/trunk-action@v0.1.0
