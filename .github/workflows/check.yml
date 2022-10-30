@@ -15,14 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+          toolchain: stable
+          override: true
+
     - name: Build
       run: cargo build --verbose
 
     - name: Run cargo fmt
       run: cargo fmt -- --check
-
-    - name: Install clippy
-      run: rustup component add clippy
 
     - name: Run clippy
       run: cargo clippy

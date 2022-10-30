@@ -24,17 +24,19 @@ jobs:
       uses: actions-rs/toolchain@v1
       with:
           toolchain: stable
-          profile: minimal
           override: true
           # target: wasm32-unknown-unknown
 
-    - name: Set up build tools
-      run: |
-        cargo install trunk
-        rustup target add wasm32-unknown-unknown
+    - name: Install trunk
+      uses: jetli/trunk-action@v0.1.0
+        with:
+          version: 'latest'
+
+    - name: Set up build WASM target
+      run: rustup target add wasm32-unknown-unknown
 
     - name: Build
-      run: trunk build --release --verbose
+      run: trunk build --release
 
     - name: Upload files
       uses: actions/upload-artifact@v3
