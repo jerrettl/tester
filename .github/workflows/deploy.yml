@@ -27,6 +27,9 @@ jobs:
           override: true
           # target: wasm32-unknown-unknown
 
+    - name: Import cache
+      uses: Swatinem/rust-cache@v2
+
     - name: Install trunk
       uses: jetli/trunk-action@v0.1.0
       with:
@@ -36,7 +39,7 @@ jobs:
       run: rustup target add wasm32-unknown-unknown
 
     - name: Build
-      run: trunk build --release
+      run: trunk build --release --public-url /${{ github.event.repository.name }}
 
     - name: Upload files
       uses: actions/upload-artifact@v3
