@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check:
+    uses: ./.github/workflows/check.yml
+
+  build-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+          toolchain: stable
+          profile: minimal
+          override: true
+          # target: wasm32-unknown-unknown
+
+    - name: Set up build WASM target
+      run: rustup target add wasm32-unknown-unknown
+
+    - name: Build
+      run: trunk build --release --verbose
+
+    - name: Upload files
+      uses: actions/upload-artifact@v3
+      with:
+        name: output
+        path: ${{ github.workspace }}/dist/
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
