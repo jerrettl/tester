@@ -23,15 +23,15 @@ jobs:
       uses: actions-rs/toolchain@v1
       with:
           toolchain: stable
-          profile: minimal
           override: true
+          components: trunk
           # target: wasm32-unknown-unknown
 
     - name: Set up build WASM target
       run: rustup target add wasm32-unknown-unknown
 
     - name: Build
-      run: trunk build --release --verbose
+      run: trunk build --release
 
     - name: Upload files
       uses: actions/upload-artifact@v3
