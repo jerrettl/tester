@@ -5,6 +5,7 @@ on:
 
   # Allows you to call this workflow manually
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   check:
